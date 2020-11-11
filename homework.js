@@ -6,17 +6,63 @@
 // If the potential member is not in the array, return the array unchanged.
 // If the potential member is in the array, remove all instances of it from the array.
 
+function remove(members, itemToRemove) {
+    let output = []
+    for (let member of members) {
+        if (member !== itemToRemove) {
+            output.push(member)
+        }
+    }
+    return output
+}
+
+
 // 2. Revisit your "remove" function. Make sure that it does not change the original
 // array but instead returns a new array.
+
+// use slice argument here  let newArray = array.slice()
 
 // 3. Create a function called "sum" that takes an array of numbers and
 // returns the sum of those numbers.
 
+function sum(array) {
+    let output = 0
+    for (let arrayNumber of array) {
+        output += arrayNumber
+    }
+    return output
+}
+
+
 // 4. Create a function called "average" that takes an array of numbers
 // and returns the average of those numbers.
 
+function average(numbers) {
+    if (numbers.length === 0) {
+        return
+    }
+
+    let totalNumbers = sum(numbers)
+    return totalNumbers / numbers.length
+}
+
 // 5. Create a function called "minimum" that takes an array of numbers and
 // returns the smallest number in that array.
+
+function minimum(numbers) {
+
+    if (numbers.length === 0) {
+        return
+    }
+    
+    let smallestNumber = numbers[0]
+
+    for (let number of numbers) {
+        if (number < smallestNumber)
+          smallestNumber = number
+       }
+    return smallestNumber
+}
 
 // 6. There are many techniques to sort arrays in programming. Your programming
 // language will likely include the ability to do this. We are going to
@@ -31,6 +77,34 @@
 // Create a function called selectionSort that takes an array of numbers and returns
 // a sorted array using the above technique.
 //
+
+function selectionSort(unsortedNumbers) {
+    let copy = unsortedNumbers.slice(0)
+    let output = []
+
+    while (copy.length > 0) {
+        let min = minimum(copy)
+        let index = copy.indexOf(min)
+        copy.splice(index, 1)
+        output.push(min)
+    }
+    return output
+    
+}
+
+
+
+// 
+
+//     for (let unsortedNumCopy of unsortedNumsCopy) {
+//         let smallestNumber = minimum(unsortedNumsCopy)
+//         sortedNumbers.push(smallestNumber)
+//         unsortedNumsCopy.splice(unsortedNumCopy)
+//     }
+//     return sortedNumbers
+// }
+
+
 // Note 1: You do not actually want to delete things from the original array. You
 // should copy it first. To copy an array, use the following code:
 //
@@ -47,3 +121,16 @@
 //
 // For example, `textList(['Cadence', 'Ordel', 'Marion'])` results in the string
 // `"Cadence,Ordel,Marion"`.
+
+function textList(names) {
+    let output = ""
+
+    for (let index = 0; index < names.length; index++) {
+        output += names[index]
+        if (index < names.length - 1) {
+            output += ","
+        }
+        
+    }
+    return output 
+}
